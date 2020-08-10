@@ -9,6 +9,7 @@
         <module name="chater01demo" />
         <module name="chat01" />
         <module name="chat02" />
+        <module name="chat03" />
         <module name="chat01demo" />
       </profile>
     </annotationProcessing>
@@ -16,6 +17,7 @@
       <module name="chat01" target="1.8" />
       <module name="chat01demo" target="1.8" />
       <module name="chat02" target="1.8" />
+      <module name="chat03" target="1.8" />
       <module name="chater01demo" target="1.8" />
       <module name="mybatislearn" target="1.8" />
     </bytecodeTargetLevel>
