@@ -1,12 +1,14 @@
-package com.javacode2020.chat03.demo1;
+package com.javacode2020.chat03.demo2;
 
+import com.javacode2020.chat03.demo2.mapper.UserMapper;
+import com.javacode2020.chat03.demo2.UserModel;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.junit.Before;
-import org.junit.Test;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +25,7 @@ public class UserMapperTest {
     @Before
     public void before() throws IOException {
         // 指定mybatis全局配置文件
-        String resource = "test/mybatis-config.xml";
+        String resource = "test1/mybatis-config.xml";
         // 读取全局配置文件
         InputStream stream = Resources.getResourceAsStream(resource);
         // 构建对象

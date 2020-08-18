@@ -1,12 +1,18 @@
-package com.javacode2020.chat03.demo1;
+package com.javacode2020.chat03.demo3;
 
+import com.javacode2020.chat03.demo3.mapper.OrderMapper;
+import com.javacode2020.chat03.demo3.mapper.UserMapper;
+import com.javacode2020.chat03.demo3.model.UserModel;
+//import com.javacode2020.chat03.demo3.mapper.UserMapper;
+//import com.javacode2020.chat03.demo3.mapper.OrderMapper;
+import com.javacode2020.chat03.demo3.model.OrderModel;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.junit.Before;
-import org.junit.Test;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,16 +20,17 @@ import java.util.List;
 
 /**
  * @author 水面行走
- * @date 2020/8/10 8:52 
+ * @date 2020/8/13 13:24 
  */
 @Slf4j
-public class UserMapperTest {
+public class Demo3Test {
+
     private SqlSessionFactory sqlSessionFactory;
 
     @Before
     public void before() throws IOException {
         // 指定mybatis全局配置文件
-        String resource = "test/mybatis-config.xml";
+        String resource = "test2/mybatis-config.xml";
         // 读取全局配置文件
         InputStream stream = Resources.getResourceAsStream(resource);
         // 构建对象
@@ -45,7 +52,7 @@ public class UserMapperTest {
     }
 
     @Test
-    public void getUserList() {
+    public void test() {
         try (SqlSession sqlSession = this.sqlSessionFactory.openSession(true)){
             UserMapper mapper = sqlSession.getMapper(UserMapper.class);
             // 执行查询操作
@@ -53,6 +60,17 @@ public class UserMapperTest {
             userList.forEach(item -> {
                 log.info("{}", item);
             });
+
+            log.info("----------------------------------");
+
+             OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+            // 执行查询操作
+            List<OrderModel> orderList = orderMapper.getList();
+            orderList.forEach(item -> {
+                log.info("{}", item);
+            });
+
         }
     }
+
 }
