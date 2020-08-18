@@ -18,4 +18,31 @@
 
     </select>
 
+    <select id="getListByUserFindDto" resultType="com.javacode2020.chat03.demo4.model.UserModel">
+
+        <![CDATA[
+        SELECT * FROM t_user WHERE id = #{userId} or  name = #{userName}
+        ]]>
+
+    </select>
+
+    <select id="getByIdOrName1" resultType="com.javacode2020.chat03.demo4.model.UserModel">
+
+        <![CDATA[
+
+        SELECT * FROM t_user WHERE id = #{arg0} or  name = #{arg1} LIMIT 1
+        ]]>
+
+    </select>
+
+    <select id="getByIdOrName" resultType="com.javacode2020.chat03.demo4.model.UserModel">
+
+        <![CDATA[
+
+        SELECT * FROM t_user WHERE id = #{param1} or  name = #{param2} LIMIT 1
+        ]]>
+
+    </select>
+
+
 </mapper>

@@ -1,5 +1,6 @@
 package com.javacode2020.chat03.demo4;
 
+import com.javacode2020.chat03.demo4.dto.UserFindDto;
 import com.javacode2020.chat03.demo4.mapper.UserMapper;
 import com.javacode2020.chat03.demo4.model.UserModel;
 import lombok.extern.slf4j.Slf4j;
@@ -55,6 +56,27 @@ public class Demo4Test {
             map.put("id", 1L);
             map.put("name", "张学友");
             List<UserModel> userModel = userMapper.getByMap(map);
+            log.info("{}", userModel);
+        }
+    }
+
+    @Test
+    public void getListByUserFindDto(){
+        try (SqlSession sqlSession = this.sqlSessionFactory.openSession(true);) {
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            UserFindDto userFindDto = UserFindDto.builder().userId(1L).userName("张学友").build();
+            List<UserModel> userModel = userMapper.getListByUserFindDto(userFindDto);
+            userModel.forEach(item -> {
+                log.info("{}", item);
+            });
+        }
+    }
+
+    @Test
+    public void getByIdOrName(){
+        try (SqlSession sqlSession = this.sqlSessionFactory.openSession(true);) {
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            UserModel userModel = userMapper.getByIdOrName(1L, "张学友");
             log.info("{}", userModel);
         }
     }
