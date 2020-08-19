@@ -4,6 +4,7 @@ import com.javacode2020.chat03.demo4.dto.UserFindDto;
 import com.javacode2020.chat03.demo4.mapper.UserMapper;
 import com.javacode2020.chat03.demo4.model.UserModel;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.executor.result.DefaultResultContext;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -13,6 +14,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,11 +75,52 @@ public class Demo4Test {
     }
 
     @Test
+    public void getListByIdCollection(){
+        try (SqlSession sqlSession = this.sqlSessionFactory.openSession(true);) {
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            List<Long> longs = Arrays.asList(1L, 3L);
+            List<UserModel> userModel = userMapper.getListByIdCollection(longs);
+            userModel.forEach(item -> {
+                log.info("{}", item);
+            });
+        }
+    }
+
+    @Test
+    public void getListByIdList(){
+        try (SqlSession sqlSession = this.sqlSessionFactory.openSession(true);) {
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            List<Long> longs = Arrays.asList(1L, 3L);
+            List<UserModel> userModel = userMapper.getListByIdCollection(longs);
+            userModel.forEach(item -> {
+                log.info("{}", item);
+            });
+        }
+    }
+
+    @Test
     public void getByIdOrName(){
         try (SqlSession sqlSession = this.sqlSessionFactory.openSession(true);) {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
             UserModel userModel = userMapper.getByIdOrName(1L, "张学友");
             log.info("{}", userModel);
+        }
+    }
+
+    @Test
+    public void getList(){
+        try (SqlSession sqlSession = this.sqlSessionFactory.openSession(true);) {
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            userMapper.getList(context -> {
+                //将context参数转换为DefaultResultContext对象
+                DefaultResultContext<UserModel> defaultResultContext = (DefaultResultContext<UserModel>) context;
+                log.info("{}", defaultResultContext.getResultObject());
+                // 遍历到第二条结束
+                if (2 == defaultResultContext.getResultCount()){
+                    // 结束
+                    defaultResultContext.stop();
+                }
+            });
         }
     }
 

@@ -44,5 +44,21 @@
 
     </select>
 
+    <select id="getListByIdCollection" resultType="com.javacode2020.chat03.demo4.model.UserModel">
+        <![CDATA[
 
+            SELECT * FROM t_user WHERE id in (#{collection[0]},#{collection[1]})
+        ]]>
+    </select>
+
+    <!-- 通过用户id列表查询 -->
+    <select id="getListByIdList" resultType="com.javacode2020.chat03.demo4.model.UserModel">
+        <![CDATA[
+        SELECT * FROM t_user WHERE id IN (#{list[0]},#{collection[1]})
+        ]]>
+    </select>
+
+    <select id="getList" resultType="com.javacode2020.chat03.demo4.model.UserModel">
+        SELECT * FROM t_user
+    </select>
 </mapper>
