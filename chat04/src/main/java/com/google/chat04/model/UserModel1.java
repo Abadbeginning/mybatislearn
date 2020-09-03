@@ -12,7 +12,10 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @ToString
-public class UserModel {
+public class UserModel1 {
     private Long id;
     private String name;
+    private Integer age;
+    private Double salary;
+    private Integer sex;
 }

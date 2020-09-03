@@ -3,8 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+<!--    <settings>-->
+<!--        &lt;!&ndash; 是否开启自动驼峰命名规则映射，及从xx_yy映射到xxYy &ndash;&gt;-->
+<!--&lt;!&ndash;        <setting name="mapUnderscoreToCamelCase" value="true"/>&ndash;&gt;-->
+<!--        <setting name="mapUnderscoreToCamelCase" value="true"/>-->
+<!--    </settings>-->
+
+<!--    <typeAliases>-->
+<!--        <typeAlias type="com.google" />-->
+<!--    </typeAliases>-->
+
     <!-- 引入外部jdbc配置 -->
-    <properties resource="jdbc.properties"/>
+    <properties resource="jdbc19.properties"/>
     <!-- 环境配置，可以配置多个环境 -->
     <environments default="demo4">
         <environment id="demo4">
@@ -21,6 +32,11 @@
     </environments>
 
     <mappers>
-        <mapper resource="demo1/UserMapper.xml" />
+        <mapper resource="demo1/mapper/UserMapper.xml" />
+        <mapper resource="demo1/mapper/GoodsMapper.xml" />
+        <mapper resource="demo1/mapper/OrderMapper.xml" />
+        <mapper resource="demo1/mapper/OrderDetailMapper.xml" />
+<!--        <mapper resource="demo1/UserMapper.xml" />-->
+<!--        <mapper resource="demo1/OrderMapper.xml" />-->
     </mappers>
 </configuration>

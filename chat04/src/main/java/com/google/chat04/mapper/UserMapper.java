@@ -38,4 +38,7 @@ public interface UserMapper {
 
     int insertUser3(UserModel userModel);
 
+    UserModel getById(int id);
+    UserModel getById1(int id);
+
 }
