@@ -16,6 +16,7 @@
         <module>chat01</module>
         <module>chat02</module>
         <module>chat03</module>
+        <module>chat04</module>
     </modules>
 
     <properties>
@@ -80,7 +81,7 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
-                <scope>provided</scope>
+<!--                <scope>provided</scope>-->
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
